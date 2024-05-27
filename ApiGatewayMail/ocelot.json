@@ -1,0 +1,73 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/Login/{method}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "reghost",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/Login/{method}",
+      "UpstreamHttpMethod": [ "Post" ],
+      "SwaggerKey": "clients"
+    },
+    {
+      "DownstreamPathTemplate": "/User/{method}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "reghost",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/User/{method}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Delete" ],
+      "SwaggerKey": "clients"
+    },
+    {
+      "DownstreamPathTemplate": "/Server/{method}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "mailhost",
+          "Port": 8080
+        }
+      ],
+      "UpstreamPathTemplate": "/Server/{method}",
+      "UpstreamHttpMethod": [ "Get", "Post", "Put", "Delete" ],
+      "SwaggerKey": "mailserver"
+    }
+    
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://apigatewayhost:7269"
+  },
+
+  "SwaggerEndPoints": [
+    {
+      "Key": "clients",
+      "TransformByOcelotConfig": false,
+      "Config": [
+        {
+          "Name": "Client API",
+          "Version": "v1",
+          "Url": "http://reghost:8080/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "mailserver",
+      "TransformByOcelotConfig": false,
+      "Config": [
+        {
+          "Name": "Mails API",
+          "Version": "v1",
+          "Url": "http://mailhost:8080/swagger/v1/swagger.json"
+        }
+      ]
+    }
+    
+  ]
+}
